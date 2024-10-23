@@ -4,12 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Validation Practice</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="styles.css" />
     <!-- Font Awesome for Icons -->
     <script
       src="https://kit.fontawesome.com/d8f052c6cf.js"
       crossorigin="anonymous"></script>
-      <script defer type="text/javascript" src="./main.js"></script>
         
     </script>
   </head>
@@ -23,17 +22,18 @@
         
         <!-- Registration Form -->
         <form id="registration" >
-          <input name="username" type="text" placeholder="Username" minlength="4" pattern = "(?:(.)(?<=^(?:(?!\1).)*\1)(?=(?:(?!\1).)*$).*?){2,}" id="username" required/>
+          <input name="username" type="text" placeholder="Username" minlength="4" pattern = "^(?=.*[a-zA-Z])(?=.*[a-zA-Z].*[a-zA-Z])(?!.*\s)[a-zA-Z]+$" id="username" required title="Username must contain a minimum of 4 characters, must contain 2 unique characters, and cannot contain whitespace or any special characters."/>
           <span class="input-icon"><i class="fa-solid fa-user"></i></span><br />
 
-          <input id="email" name="email" type="text" placeholder="Email" pattern="/^(([^<>()\[\]\\.,;:\s@']+(\.[^<>()\[\]\\.,;:\s@']+)*)|('.+'))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/" required/>
+          <input id="email" name="email" type="text" placeholder="Email" pattern="^(?=.*@).+$" required/>
           <span class="input-icon"><i class="fa-solid fa-envelope"></i></span
           ><br />
 
-          <input id="password" name="password" type="text" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}" required />
+          <input id="registration-password" name="password" type="text" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{12,}" required />
           <span class="input-icon"><i class="fa-solid fa-key"></i></span><br />
 
           <input
+          id="password-confirm"
             name="passwordCheck"
             type="text"
             placeholder="Repeat Password"
@@ -78,5 +78,6 @@
 
     <!-- Error Display Container -->
     <div id="errorDisplay"></div>
+    <script src="main.js"></script>
   </body>
 </html>
