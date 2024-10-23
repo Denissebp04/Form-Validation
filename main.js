@@ -82,6 +82,7 @@ registration.addEventListener('submit', (e) => {
         return false 
     }
     
+    console.log(pass)
 
 });
 
