@@ -1,14 +1,14 @@
 const registration = document.getElementById('registration')
-const regUser = document.getElementById('username').value
+const regUser = document.getElementById('username')
 const email = document.getElementById('email')
-const password = registration.elements['password'].value
 const pass = document.getElementById('registration-password')
 const confirmPass = document.getElementById('password-confirm').value
-
+const Confirm = document.getElementById('password-confirm')
 
 
 registration.addEventListener('submit', (e) => {
-    // e.preventDefault();
+    const testPassword = this.password.value
+   // e.preventDefault();
 
     function validateEmail(){
         let emailValue = email.value;
@@ -43,46 +43,46 @@ registration.addEventListener('submit', (e) => {
     }
 
     
-    function validatePassword(){
-        const passRegex = /^(?=.*[!@#$%^&*(),.?":{}|<>]).+$/
-        const regextest = passRegex.test(password)
-        console.log(password)
-        console.log("before "+ regextest)
-        if(!regextest){
-            console.log("after "+ regextest)
-            alert("Password must contain special character")
-            password.focus()
-            return false
-        }
-        if(password.includes("password")){
+    function validatePassword(input){
+        const wordPass = 'password'
+        const password = document.getElementById('registration-password').value
+        console.log(input)
+        if(input.toLowerCase().includes(wordPass)){
             alert("Password can not contain the word 'password'")
             pass.focus()
             return false
         }
-        if(password.includes(regUser)){
-            alert("Password can not contain username")
+        if(password === regUser){
+            alert("Password can not contain the username")
             pass.focus()
             return false
+        }
+        if(!password === confirmPass){
+            alert("Password must match Confirm Password")
+            Confirm.focus()
+            return false
+        }
 
-        }
-        if(){
-            alert("Password can not contain username")
-            pass.focus()
-            return false
-        }
+        console.log(password)
+        return password
 
     }
 
-        return password
-
-
-    const passwordValidation = validatePassword()
+    const passwordValidation = validatePassword(password)
     if(passwordValidation == false){
         e.preventDefault()
         return false 
     }
+
+    function local (){
+        if(!passwordValidation==false){
+            localStorage.setItem(password)
+        }
+        if(!emailValidation == false){
+            localStorage.setItem(email)
+        }
+    }
     
-    console.log(pass)
 
 });
 
