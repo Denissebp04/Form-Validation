@@ -1,13 +1,13 @@
 const registration = document.getElementById('registration')
-const regUser = document.getElementById('username')
-const email = document.getElementById('email')
-const pass = document.getElementById('registration-password')
-const confirmPass = document.getElementById('password-confirm').value
-const Confirm = document.getElementById('password-confirm')
-
-
 registration.addEventListener('submit', (e) => {
+    const regUser = document.getElementById('username')
+    const email = document.getElementById('email')
+    const pass = document.getElementById('registration-password')
+    const confirmPass = document.getElementById('password-confirm').value
+    const Confirm = document.getElementById('password-confirm')
     const testPassword = this.password.value
+    const LoginUser = document.getElementById('loginUser').value
+    const LoginPass = document.getElementById('loginPass').value
    // e.preventDefault();
 
     function validateEmail(){
@@ -76,13 +76,28 @@ registration.addEventListener('submit', (e) => {
 
     function local (){
         if(!passwordValidation==false){
-            localStorage.setItem(password)
+            localStorage.setItem(password.toLowerCase())
         }
         if(!emailValidation == false){
-            localStorage.setItem(email)
+            localStorage.setItem(email.toLowerCase())
         }
+        if(!regUser == false){
+            localStorage.setItem(regUser.toLowerCase())
+        }
+        const savedUser = localStorage.getItem(LoginUser)
+        const savedPass = localStorage.getItem(LoginPass)
+        if(LoginUser !== savedUser){
+            alert("Username does not exist, try again")
+            return false
+        }
+        if(LoginPass !== savedPass){
+            alert("Password incorrect, try again")
+            return false
+        }
+
     }
     
+    local()
 
 });
 
